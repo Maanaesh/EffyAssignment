@@ -21,7 +21,7 @@ This is a full-stack web application that allows you to manage companies and use
 ### Frontend (Phase 2 - UI)
 - **Company Management**:
   - Create, update, and delete companies
-  - View company details and display the company’s location on a map
+  - View company details and display the company’s location on a map with direct google maps navigation link
   - Manage users assigned to a company
 - **User Management**:
   - Create, update, and deactivate users
@@ -72,4 +72,31 @@ MONGO_URI =
 ``` bash
 npm start
 ```
+### HomePage
+![image](https://github.com/user-attachments/assets/cfa8e3c2-d850-4518-b1a0-9b7d13e9d522)
+
+### ListCompanies Page
+![image](https://github.com/user-attachments/assets/290053ad-2ab8-4f9d-a41e-72a228b2dfee)
+
+### CreateCompany Form
+![image](https://github.com/user-attachments/assets/174d654f-b3cb-4067-bd6c-6d3f17e1043e)
+
+### Modify Company Details
+![image](https://github.com/user-attachments/assets/13cfc009-da68-4f04-84b5-0aa03125732a)
+
+### Company Details Page
+![image](https://github.com/user-attachments/assets/3f517eb5-3971-4350-848e-8df249f57ff3)
+
+### List Users Page
+![image](https://github.com/user-attachments/assets/10e0b312-e53e-401e-89b6-9c691008ab1e)
+
+### Create User From
+![image](https://github.com/user-attachments/assets/86d643d3-32e3-4a86-a770-a4fdf3a1bf6d)
+
+### User Details Page
+![image](https://github.com/user-attachments/assets/e1bb11bd-74ab-4fd2-b772-f34c7d6d4d3d)
+
+### Modify User Details 
+![image](https://github.com/user-attachments/assets/c2412755-97a3-41ea-802b-5c985741cb95)
+
 
