@@ -29,7 +29,7 @@ function UserDetails() {
       const res = await getCompanyById(companyId);
       setCompanyName(res.data.data.companyName);
     } catch (err) {
-      console.error("Error fetching company:", err.message);
+      console.error("Error fetching company:", res.err.message);
     }
   };
 
@@ -71,7 +71,7 @@ function UserDetails() {
           <Text><strong>Designation:</strong> {user.designation}</Text>
           <Text><strong>Date of Birth:</strong> {new Date(user.dob).toLocaleDateString()}</Text>
           <Text><strong>Active:</strong> {user.active ? "Yes" : "No"}</Text>
-          <Text><strong>Company:</strong> {companyName}</Text>
+          <Text><strong>Company:</strong> {companyName || "No company information available"}</Text>
         </Box>
         
       ) : (
