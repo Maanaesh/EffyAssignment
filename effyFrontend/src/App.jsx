@@ -8,7 +8,14 @@ import DetailsPage from './pages/DetailsPage';
 import ListUsers from './pages/ListUsers';
 import UserDetails from './pages/UserDetails';
 import Navbar from './components/Navbar';
+import { useEffect } from 'react';
+import { useColorMode } from "@chakra-ui/react";
 function App() {
+  const { setColorMode } = useColorMode();
+
+  useEffect(() => {
+    setColorMode("light"); // Force light mode on mount
+  }, [setColorMode]);
   return (
     <>
       <Navbar/>
