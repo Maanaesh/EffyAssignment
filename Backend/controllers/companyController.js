@@ -1,6 +1,8 @@
 import Company from "../Models/companyModel.js";
 import User from "../Models/userModel.js";
 import validator from "validator";
+import axios from 'axios';
+
 
 export const createCompany = async(req,res)=>{
     const data= req.body;
@@ -71,27 +73,47 @@ export const updateCompany = async (req, res) => {
 
   export const deleteCompany = async (req, res) => {
     const { id } = req.params;
-  
+    
     try {
+      // Validate the ID
       if (!validator.isMongoId(id)) {
         return res.status(400).json({ success: false, message: 'Invalid Company ID' });
       }
-
-      const deletedUser = await Company.findByIdAndDelete(id);
   
-
-      if (!deletedUser) {
+      // Find the company
+      const company = await Company.findById(id);
+      if (!company) {
         return res.status(404).json({ success: false, message: 'Company not found' });
       }
   
-
-      res.status(200).json({ success: true, message: 'Company deleted successfully', data: deletedUser });
+      // Get users from the company
+      const users = company.users;
+  
+      // If the company has users, update their company reference to null
+      if (users && users.length > 0) {
+        // Await all the user updates to finish
+        await Promise.all(users.map(async (userId) => {
+          const uId = userId.toString();
+          await User.findByIdAndUpdate(uId, { company: null });
+        }));
+      }
+  
+      // Delete the company after the user updates are done
+      const deletedCompany = await Company.findByIdAndDelete(id);
+  
+      if (!deletedCompany) {
+        return res.status(404).json({ success: false, message: 'Company not found' });
+      }
+  
+      // Return success response
+      res.status(200).json({ success: true, message: 'Company deleted successfully', data: deletedCompany });
     } catch (error) {
       console.error(error);
       res.status(500).json({ success: false, message: 'Server error' });
     }
   };
-
+  
+  
   export const addUser = async(req,res)=>{
     const {companyId,userId}=req.params;
     try{
